@@ -2,6 +2,7 @@
 module Fixed.Logic where
 
 import Control.Monad
+import Control.Applicative
 import Control.Monad.Trans
 import Control.Monad.Logic.Class
 import Control.Monad.IO.Class
@@ -27,8 +28,19 @@ instance Monad m => Monad (ML m) where
        Just (h,t) -> toView (f h `mplus` (t >>= f))
   fail _ = mzero
 
+instance Monad m => Applicative (ML m) where
+  pure = return
+  (<*>) = ap
+  
+instance Monad m => Functor (ML m) where
+  fmap = liftM
+
+instance Monad m => Alternative (ML m) where
+    (<|>) = mplus
+    empty = mzero
+    
 instance Monad m => MonadPlus (ML m) where
-  mzero = ML empty
+  mzero = ML Data.FastCQueue.empty
   mplus (toView -> m) n = fromView $ m >>= return . \case
        Nothing    -> Nothing
        Just (h,t) -> Just (h, cat t n) 

@@ -9,7 +9,7 @@ do
   time3=$(/usr/bin/time --format="%U" ./runLogicBench $x 2>&1)
   time4=$(/usr/bin/time --format="%U" ./runLogicBench $x 2>&1)
   time5=$(/usr/bin/time --format="%U" ./runLogicBench $x 2>&1)
-  avg=$(./Median $time1 $time2 $time3 $time4 $time5 )
+  avg=$(./Median.hs $time1 $time2 $time3 $time4 $time5 )
   echo "$x $avg"
   x=$(( $x + 50 ))
 done

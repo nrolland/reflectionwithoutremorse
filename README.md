@@ -11,3 +11,6 @@ This code is organized as follows:
 To run the LogicT examples with a two continuation passing implementation do:
 
 cabal install logict
+
+
+brew install gnu-time on macos

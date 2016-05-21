@@ -1,2 +1,2 @@
 #!/bin/bash
-./LogicBenchMplus $1 > /dev/null
+stack exec -- LogicBenchMplus $1 > /dev/null

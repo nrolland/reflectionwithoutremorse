@@ -1,3 +1,5 @@
+#!/usr/bin/env stack
+-- stack --install-ghc --resolver lts-5.17 runghc
 {-# LANGUAGE BangPatterns #-}
 import Control.Monad
 import Control.Monad.Logic.Class
